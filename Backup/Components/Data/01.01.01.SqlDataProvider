@@ -1,0 +1,139 @@
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+ALTER TABLE {databaseOwner}[{objectQualifier}UserGroups_UserGroups] ADD
+	Latitude float(53) NULL,
+	Longitude float(53) NULL
+GO
+
+ALTER VIEW {databaseOwner}[{objectQualifier}UserGroups_vw_UserGroups]
+AS
+	SELECT     
+		UserGroupID, 
+		ModuleID, 
+		LeaderID, 
+		Name, 
+		Country, 
+		Region, 
+		City, 
+		Url, 
+		Logo, 
+		[Status], 
+		Latitude, 
+		Longitude,
+		(SELECT  COUNT(*) FROM dbo.{objectQualifier}UserGroups_UserGroupUser WHERE (UserGroupID = ug.UserGroupID)) AS Members
+	FROM  {databaseOwner}{objectQualifier}UserGroups_UserGroups AS ug
+
+GO
+
+ALTER PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_AddUserGroup]
+
+	@ModuleID	int,
+	@LeaderID	int,
+	@Name		nvarchar(50),
+	@Country	nvarchar(50),
+	@Region		nvarchar(50),
+	@City		nvarchar(50),
+	@Url		nvarchar(100),
+	@Logo		nvarchar(100),
+	@Status		int,
+	@Latitude	float,
+	@Longitude	float
+
+AS
+
+	INSERT INTO {objectQualifier}UserGroups_UserGroups (
+		ModuleID,
+		LeaderID,
+		[Name],
+		Country,
+		Region,
+		City,
+		Url,
+		Logo,
+		[Status],
+		Latitude,
+		Longitude
+	)
+	VALUES (
+		@ModuleID,
+		@LeaderID,
+		@Name,
+		@Country,
+		@Region,
+		@City,
+		@Url,
+		@Logo,
+		@Status,
+		@Latitude,
+		@Longitude
+	)
+
+SELECT SCOPE_IDENTITY()
+
+GO
+
+ALTER PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_UpdateUserGroup]
+
+	@UserGroupID	int,
+	@LeaderID		int,
+	@Name			nvarchar(50),
+	@Country		nvarchar(50),
+	@Region			nvarchar(50),
+	@City			nvarchar(50),
+	@Url			nvarchar(100),
+	@Logo			nvarchar(100),
+	@Status			int,
+	@Latitude		float,
+	@Longitude		float
+
+AS
+	UPDATE {objectQualifier}UserGroups_UserGroups 
+		SET 
+			LeaderID = @LeaderID,
+			[Name] = @Name,
+			Country = @Country,
+			Region = @Region,
+			City = @City,
+			Url = @Url,
+			Logo = @Logo,
+			[Status] = @Status,
+			Latitude = @Latitude,
+			Longitude = @Longitude
+		WHERE UserGroupID = @UserGroupID
+
+GO
+
+ALTER PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_UpdateUserGroupMeeting]
+
+	@MeetingID		int,
+	@EventID		int,
+	@Title			nvarchar(100),
+	@Description	ntext,
+	@Location		nvarchar(200),
+	@MapUrl			nvarchar(200),
+	@MeetingDate	datetime
+
+AS
+	UPDATE {objectQualifier}UserGroups_UserGroupMeeting 
+		SET 
+			EventID = @EventID,
+			Title = @Title,
+			Description = @Description,
+			Location = @Location,
+			MapUrl = @MapUrl,
+			MeetingDate = @MeetingDate
+		WHERE MeetingID = @MeetingID
+		
+GO
+
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/

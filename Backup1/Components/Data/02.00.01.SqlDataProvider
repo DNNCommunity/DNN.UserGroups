@@ -1,0 +1,121 @@
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_Users_GetOfficers') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_Users_GetOfficers
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_Meetings_Add') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_Meetings_Add
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_Meetings_Update') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_Meetings_Update
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_Meetings_Get') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_Meetings_Get
+GO
+
+/* DROP FOR GOOD */
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_UpdateUserGroupMeeting') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_UpdateUserGroupMeeting
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_AddUserGroupMeeting') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_AddUserGroupMeeting
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_DeleteUserGroupMeeting') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_DeleteUserGroupMeeting
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_GetMeetingsByUserGroup') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_GetMeetingsByUserGroup
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_GetUserGroupMeeting') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_GetUserGroupMeeting
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_Users_GetOfficers] @UserGroupID INT
+AS 
+    SELECT  Officer,
+            UserGroupID,
+            UserGroupUserID,
+            UG.CreatedByUserID AS CreatedBy,
+            UG.CreatedOnDate AS CreatedOn,
+            U.*,
+            ( SELECT    LeaderID
+              FROM      {databaseOwner}{objectQualifier}UserGroups_UserGroups
+              WHERE     UserGroupID = @UserGroupID
+            ) AS LeaderID
+    FROM    {databaseOwner}{objectQualifier}UserGroups_UserGroupUser UG
+            INNER JOIN {databaseOwner}{objectQualifier}Users U ON UG.UserID = U.UserID
+    WHERE   UserGroupID = @UserGroupID
+            AND UG.Officer = 1
+    ORDER BY Officer DESC,
+            U.DisplayName
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_Meetings_Add]
+    @UserGroupID INT,
+    @EventID INT,
+    @Title NVARCHAR(100),
+    @Description NTEXT,
+    @Location NVARCHAR(200),
+    @MeetingDate DATETIME
+AS 
+    INSERT  INTO {databaseOwner}{objectQualifier}UserGroups_UserGroupMeeting
+            (
+              UserGroupID,
+              EventID,
+              Title,
+              [Description],
+              Location,
+              MeetingDate
+	      )
+    VALUES  (
+              @UserGroupID,
+              @EventID,
+              @Title,
+              @Description,
+              @Location,
+              @MeetingDate
+	      )
+    SELECT  SCOPE_IDENTITY()
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_Meetings_Update]
+    @MeetingID INT,
+    @UserGroupID INT,
+    @EventID INT,
+    @Title NVARCHAR(100),
+    @Description NTEXT,
+    @Location NVARCHAR(200),
+    @MeetingDate DATETIME
+AS 
+    UPDATE  {databaseOwner}{objectQualifier}UserGroups_UserGroupMeeting
+    SET     EventID = @EventID,
+            Title = @Title,
+            [Description] = @Description,
+            Location = @Location,
+            MeetingDate = @MeetingDate
+    WHERE   MeetingID = @MeetingID
+            AND UserGroupID = @UserGroupID
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_Meetings_Get] @MeetingID INT
+AS 
+    SELECT  MeetingID,
+            UserGroupID,
+            Title,
+            [Description],
+            Location,
+            MapUrl,
+            MeetingDate,
+            EventID
+    FROM    {databaseOwner}{objectQualifier}UserGroups_UserGroupMeeting
+    WHERE   MeetingID = @MeetingID
+GO
+
+

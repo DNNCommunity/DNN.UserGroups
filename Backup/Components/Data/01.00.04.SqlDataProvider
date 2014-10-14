@@ -1,0 +1,143 @@
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+ALTER PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_GetUsersByUserGroup]
+	@UserGroupID	int
+AS
+    SELECT  
+		u.UserID,
+		u.UserName,
+		u.DisplayName,
+		u.Email
+    FROM	{objectQualifier}UserGroups_UserGroupUser ug
+		INNER JOIN {objectQualifier}Users u ON ug.UserID = u.UserID
+    WHERE  UserGroupID = @UserGroupID
+	ORDER BY u.DisplayName
+
+GO
+
+CREATE TABLE {databaseOwner}[{objectQualifier}UserGroups_UserGroupMeeting](
+	[MeetingID] [int] IDENTITY(1,1) NOT NULL,
+	[UserGroupID] [int] NOT NULL,
+	[Title] [nvarchar](100) NOT NULL,
+	[Description] [ntext] NULL,
+	[Location] [nvarchar](200) NULL,
+	[MapUrl] [nvarchar](200) NULL,
+	[MeetingDate] [datetime] NULL,
+ CONSTRAINT [PK_{objectQualifier}UserGroups_UserGroupMeeting] PRIMARY KEY CLUSTERED ([MeetingID] ASC) 
+)
+
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_AddUserGroupMeeting]
+
+	@UserGroupID	int,
+	@Title			nvarchar(100),
+	@Description	ntext,
+	@Location		nvarchar(200),
+	@MapUrl			nvarchar(200),
+	@MeetingDate	datetime
+
+AS
+
+	INSERT INTO {objectQualifier}UserGroups_UserGroupMeeting (
+		UserGroupID,
+		Title,
+		Description,
+		Location,
+		MapUrl,
+		MeetingDate
+	)
+	VALUES (
+		@UserGroupID,
+		@Title,
+		@Description,
+		@Location,
+		@MapUrl,
+		@MeetingDate
+	)
+
+	SELECT SCOPE_IDENTITY()
+
+GO
+
+ALTER PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_DeleteUserGroup]
+
+	@UserGroupID	int
+AS
+
+	/* Delete Users First */
+	DELETE FROM {objectQualifier}UserGroups_UserGroupUser
+		WHERE UserGroupID = @UserGroupID
+
+	/* Delete Meetings */
+	DELETE FROM {objectQualifier}UserGroups_UserGroupMeeting
+		WHERE UserGroupID = @UserGroupID
+
+	/* Delete UserGroup */
+	DELETE FROM {objectQualifier}UserGroups_UserGroups
+		WHERE UserGroupID = @UserGroupID
+
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_DeleteUserGroupMeeting]
+
+	@MeetingID	int
+AS
+
+	DELETE FROM {objectQualifier}UserGroups_UserGroupMeeting
+		WHERE MeetingID = @MeetingID
+
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_GetUserGroupMeeting]
+	@MeetingID	int
+AS
+    SELECT  *
+    FROM	{objectQualifier}UserGroups_UserGroupMeeting
+    WHERE  MeetingID = @MeetingID
+
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_GetMeetingsByUserGroup]
+	@UserGroupID	int,
+	@Date			datetime
+AS
+    SELECT  *
+    FROM	{objectQualifier}UserGroups_UserGroupMeeting
+    WHERE  UserGroupID = @UserGroupID
+		AND MeetingDate > @Date
+	ORDER BY MeetingDate ASC
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_UpdateUserGroupMeeting]
+
+	@MeetingID		int,
+	@Title			nvarchar(100),
+	@Description	ntext,
+	@Location		nvarchar(200),
+	@MapUrl			nvarchar(200),
+	@MeetingDate	datetime
+
+AS
+	UPDATE {objectQualifier}UserGroups_UserGroupMeeting 
+		SET 
+			Title = @Title,
+			Description = @Description,
+			Location = @Location,
+			MapUrl = @MapUrl,
+			MeetingDate = @MeetingDate
+		WHERE MeetingID = @MeetingID
+		
+GO
+
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/

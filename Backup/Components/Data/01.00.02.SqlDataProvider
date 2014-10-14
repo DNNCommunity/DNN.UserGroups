@@ -1,0 +1,27 @@
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+ALTER PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_GetUsersByUserGroup]
+	@UserGroupID	int
+AS
+    SELECT  
+		u.UserID,
+		u.UserName,
+		u.DisplayName
+    FROM	{objectQualifier}UserGroups_UserGroupUser ug
+		INNER JOIN {objectQualifier}Users u ON ug.UserID = u.UserID
+    WHERE  UserGroupID = @UserGroupID
+	ORDER BY u.DisplayName
+
+GO
+
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/

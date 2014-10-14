@@ -1,0 +1,52 @@
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+ALTER TABLE {databaseOwner}[{objectQualifier}UserGroups_UserGroupMeeting] 
+	ADD EventID int NULL
+GO
+
+ALTER PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_AddUserGroupMeeting]
+
+	@UserGroupID	int,
+	@EventID		int,
+	@Title			nvarchar(100),
+	@Description	ntext,
+	@Location		nvarchar(200),
+	@MapUrl			nvarchar(200),
+	@MeetingDate	datetime
+
+AS
+
+	INSERT INTO {objectQualifier}UserGroups_UserGroupMeeting (
+		UserGroupID,
+		EventID,
+		Title,
+		Description,
+		Location,
+		MapUrl,
+		MeetingDate
+	)
+	VALUES (
+		@UserGroupID,
+		@EventID,
+		@Title,
+		@Description,
+		@Location,
+		@MapUrl,
+		@MeetingDate
+	)
+
+	SELECT SCOPE_IDENTITY()
+
+GO
+
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/

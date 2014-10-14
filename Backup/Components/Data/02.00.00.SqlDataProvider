@@ -1,0 +1,539 @@
+
+if exists (select * from dbo.sysobjects where id = object_id(N'FK_{objectQualifier}UserGroups_Language_{objectQualifier}Portals') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_Language DROP CONSTRAINT FK_{objectQualifier}UserGroups_Language_{objectQualifier}Portals
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'PK_{objectQualifier}UserGroups_Language') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_Language DROP CONSTRAINT PK_{objectQualifier}UserGroups_Language
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'FK_{objectQualifier}UserGroups_Reason_{objectQualifier}Portals') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_Reason DROP CONSTRAINT FK_{objectQualifier}UserGroups_Reason_{objectQualifier}Portals
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'PK_{objectQualifier}UserGroups_Reason') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_Reason DROP CONSTRAINT PK_{objectQualifier}UserGroups_Reason
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'FK_{objectQualifier}UserGroups_UserGroupAudit_{objectQualifier}UserGroups_Reason') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_UserGroupAudit DROP CONSTRAINT FK_{objectQualifier}UserGroups_UserGroupAudit_{objectQualifier}UserGroups_Reason
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'PK_{objectQualifier}UserGroups_UserGroupAudit') and OBJECTPROPERTY(id, N'IsConstraint') = 1)
+	ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_UserGroupAudit DROP CONSTRAINT PK_{objectQualifier}UserGroups_UserGroupAudit
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_Language') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	drop table {databaseOwner}{objectQualifier}UserGroups_Language
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_Reason') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	drop table {databaseOwner}{objectQualifier}UserGroups_Reason
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_UserGroupAudit') and OBJECTPROPERTY(id, N'IsTable') = 1)
+	drop table {databaseOwner}{objectQualifier}UserGroups_UserGroupAudit
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_LanguagesGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_LanguagesGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_ReasonsGet') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_ReasonsGet
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_ReasonsGetActive') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_ReasonsGetActive
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_SearchGroups') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_SearchGroups
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_GetUsersByUserGroup') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_GetUsersByUserGroup
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_GroupUser_Get') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_GroupUser_Get
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_UserGroup_Leave') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_UserGroup_Leave
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_Audit_Add') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_Audit_Add
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_UserGroup_OfficerUpdate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_UserGroup_OfficerUpdate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_Meetings_Delete') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_Meetings_Delete
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_Meetings_GetAllByDate') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_Meetings_GetAllByDate
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_UserGroup_GetRegions') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_UserGroup_GetRegions
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_UserGroup_Add') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_UserGroup_Add
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_UserGroup_Get') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_UserGroup_Get
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_UserGroup_Update') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_UserGroup_Update
+GO
+
+/* DROP FOR GOOD */
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_AddUserGroup') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_AddUserGroup
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_GetUserGroup') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_GetUserGroup
+GO
+
+if exists (select * from dbo.sysobjects where id = object_id(N'{databaseOwner}{objectQualifier}UserGroups_UpdateUserGroup') and OBJECTPROPERTY(id, N'IsProcedure') = 1)
+drop procedure {databaseOwner}{objectQualifier}UserGroups_UpdateUserGroup
+GO
+
+CREATE TABLE {databaseOwner}[{objectQualifier}UserGroups_Language]
+    (
+      [LanguageID] [int] IDENTITY(1, 1) NOT NULL,
+      [Language] [nvarchar](100) NOT NULL,
+      [PortalID] [int] NOT NULL
+    )
+ON  [PRIMARY]
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_Language
+        WITH NOCHECK
+ADD CONSTRAINT PK_{objectQualifier}UserGroups_Language PRIMARY KEY CLUSTERED ( [LanguageID] )
+        ON [PRIMARY] 
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_Language
+ADD CONSTRAINT FK_{objectQualifier}UserGroups_Language_{objectQualifier}Portals FOREIGN KEY ( [PortalID] ) REFERENCES {databaseOwner}{objectQualifier}Portals ( [PortalID] ) ON DELETE CASCADE
+        ON UPDATE CASCADE NOT FOR REPLICATION 
+GO
+
+CREATE TABLE {databaseOwner}[{objectQualifier}UserGroups_Reason]
+    (
+      [ReasonID] [int] IDENTITY(1, 1) NOT NULL,
+      [Reason] [nvarchar](50) NOT NULL,
+      [Visible] [bit] NOT NULL,
+      [PortalID] [int] NOT NULL
+    )
+ON  [PRIMARY]
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_Reason
+        WITH NOCHECK
+ADD CONSTRAINT PK_{objectQualifier}UserGroups_Reason PRIMARY KEY CLUSTERED ( [ReasonID] )
+        ON [PRIMARY] 
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_Reason
+ADD CONSTRAINT FK_{objectQualifier}UserGroups_Reason_{objectQualifier}Portals FOREIGN KEY ( [PortalID] ) REFERENCES {databaseOwner}{objectQualifier}Portals ( [PortalID] ) ON DELETE CASCADE
+        ON UPDATE CASCADE NOT FOR REPLICATION 
+GO
+
+CREATE TABLE {databaseOwner}[{objectQualifier}UserGroups_UserGroupAudit]
+    (
+      [UserGroupAuditID] [int] IDENTITY(1, 1) NOT NULL,
+      [ImpactedUserID] [int] NOT NULL,
+      [CurrentUserGroupID] [int] NOT NULL,
+      [ReasonID] [int] NOT NULL,
+      [Notes] [nvarchar](250) NULL,
+      [CreatedByUserID] [int] NOT NULL,
+      [CreatedOnDate] [datetime] NOT NULL
+    )
+ON  [PRIMARY]
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_UserGroupAudit
+        WITH NOCHECK
+ADD CONSTRAINT PK_{objectQualifier}UserGroups_UserGroupAudit PRIMARY KEY CLUSTERED ( [UserGroupAuditID] )
+        ON [PRIMARY] 
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_UserGroupAudit
+ADD CONSTRAINT FK_{objectQualifier}UserGroups_UserGroupAudit_{objectQualifier}UserGroups_Reason FOREIGN KEY ( [ReasonID] ) REFERENCES {databaseOwner}{objectQualifier}UserGroups_Reason ( [ReasonID] ) ON DELETE CASCADE
+        ON UPDATE CASCADE NOT FOR REPLICATION 
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_UserGroups WITH NOCHECK 
+ADD [TwitterUrl] [NVARCHAR] (100) NULL
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_UserGroups WITH NOCHECK 
+ADD [LinkedInUrl] [NVARCHAR] (100) NULL
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_UserGroups WITH NOCHECK 
+ADD [FacebookUrl] [NVARCHAR] (100) NULL
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_UserGroups WITH NOCHECK 
+ADD [About] [NVARCHAR] (200) NULL
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_UserGroups WITH NOCHECK 
+ADD [LanguageID] [int] NULL
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_UserGroups WITH NOCHECK 
+ADD [PortalID] [int] NULL
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_UserGroups WITH NOCHECK 
+ADD [CreatedByUserID] [int] NULL
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_UserGroups WITH NOCHECK 
+ADD [CreatedOnDate] [datetime] NULL
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_UserGroups WITH NOCHECK 
+ADD [LastModifiedByUserID] [int] NULL
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_UserGroups WITH NOCHECK 
+ADD [LastModifiedOnDate] [datetime] NULL
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_UserGroups WITH NOCHECK 
+ADD [Active] [bit] NULL
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_UserGroupUser WITH NOCHECK 
+ADD [CreatedByUserID] [int] NULL
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_UserGroupUser WITH NOCHECK 
+ADD [CreatedOnDate] [datetime] NULL
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_UserGroupUser WITH NOCHECK 
+ADD [Officer] [bit] NULL
+GO
+
+ALTER TABLE {databaseOwner}{objectQualifier}UserGroups_UserGroups WITH NOCHECK 
+ADD [MeetingAddress] [NVARCHAR] (200) NULL
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_LanguagesGet] @PortalID INT
+AS 
+    BEGIN
+        SELECT  *
+        FROM    {databaseOwner}{objectQualifier}UserGroups_Language
+        WHERE   ( PortalID = @PortalID )
+    END
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_ReasonsGet] @PortalID INT
+AS 
+    BEGIN
+        SELECT  *
+        FROM    {databaseOwner}{objectQualifier}UserGroups_Reason
+        WHERE   ( PortalID = @PortalID )
+    END
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_ReasonsGetActive] @PortalID INT
+AS 
+    BEGIN
+        SELECT  *
+        FROM    {databaseOwner}{objectQualifier}UserGroups_Reason
+        WHERE   PortalID = @PortalID
+                AND Visible = 1
+    END
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_GetUsersByUserGroup] @UserGroupID INT
+AS 
+    SELECT  Officer,
+            UserGroupID,
+            UserGroupUserID,
+            UG.CreatedByUserID AS CreatedBy,
+            UG.CreatedOnDate AS CreatedOn,
+            U.*,
+            ( SELECT    LeaderID
+              FROM      {databaseOwner}{objectQualifier}UserGroups_UserGroups
+              WHERE     UserGroupID = @UserGroupID
+            ) AS LeaderID
+    FROM    {databaseOwner}{objectQualifier}UserGroups_UserGroupUser UG
+            INNER JOIN {databaseOwner}{objectQualifier}Users U ON UG.UserID = U.UserID
+    WHERE   UserGroupID = @UserGroupID
+    ORDER BY Officer DESC,
+            U.DisplayName
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_GroupUser_Get]
+    @UserID INT,
+    @PortalID INT
+AS 
+    SELECT  Officer,
+            UG.UserGroupID,
+            UserGroupUserID,
+            UG.CreatedByUserID AS CreatedBy,
+            UG.CreatedOnDate AS CreatedOn,
+            U.*,
+            ( SELECT    LeaderID
+              FROM      {databaseOwner}{objectQualifier}UserGroups_UserGroups
+              WHERE     UserGroupID = UG.UserGroupID
+            ) AS LeaderID
+    FROM    {databaseOwner}{objectQualifier}UserGroups_UserGroupUser UGU
+            INNER JOIN {databaseOwner}{objectQualifier}Users U ON UGU.UserID = U.UserID
+            INNER JOIN {databaseOwner}{objectQualifier}UserGroups_UserGroups UG ON UGU.UserGroupID = UG.UserGroupID
+    WHERE   UGU.UserID = @UserID
+            AND PortalID = @PortalID
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_UserGroup_Leave]
+	@UserGroupID INT,
+	@UserID      INT
+AS
+	DELETE {databaseOwner}{objectQualifier}UserGroups_UserGroupUser
+	WHERE UserGroupID = @UserGroupID
+	AND UserID = @UserID
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_Audit_Add]
+    @ImpactedUserID INT,
+    @CurrentUserGroupID INT,
+    @ReasonID INT,
+    @Notes NVARCHAR(250),
+    @CreatedByUserID INT,
+    @CreatedOnDate DATETIME
+AS 
+    INSERT  INTO {databaseOwner}{objectQualifier}UserGroups_UserGroupAudit
+            (
+              ImpactedUserID,
+              CurrentUserGroupID,
+              ReasonID,
+              Notes,
+              CreatedByUserID,
+              CreatedOnDate
+            )
+    VALUES  (
+              @ImpactedUserID,
+              @CurrentUserGroupID,
+              @ReasonID,
+              @Notes,
+              @CreatedByUserID,
+              @CreatedOnDate
+            )
+    SELECT  SCOPE_IDENTITY()
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_UserGroup_OfficerUpdate]
+    @UserGroupID INT,
+    @UserID INT,
+    @IsOfficer BIT
+AS 
+    UPDATE  {databaseOwner}{objectQualifier}UserGroups_UserGroupUser
+    SET     Officer = @IsOfficer
+    WHERE   UserGroupID = @UserGroupID
+            AND UserID = @UserID
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_Meetings_Delete]
+    @MeetingID INT,
+    @UserGroupID INT
+AS 
+    DELETE  {databaseOwner}{objectQualifier}UserGroups_UserGroupMeeting
+    WHERE   MeetingID = @MeetingID
+            AND UserGroupID = @UserGroupID
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_Meetings_GetAllByDate]
+    @PortalID INT,
+    @StartDate DATETIME,
+    @EndDate DATETIME,
+    @Region NVARCHAR(50),
+    @PageIndex INT,
+    @PageSize INT
+AS 
+    BEGIN
+        DECLARE @RowStart INT 
+        DECLARE @RowEnd INT 
+                
+        SET @RowStart = @PageSize * @PageIndex + 1 ; 
+        SET @RowEnd = @RowStart + @PageSize - 1 ; 
+        	
+        IF @Region = -1 
+            SET @Region = NULL
+            
+        SELECT  *
+        FROM    ( SELECT    UG.UserGroupID,
+                            MeetingID,
+                            MapUrl,
+                            Location,
+                            Title,
+                            MeetingDate,
+                            [Name],
+                            ROW_NUMBER() OVER ( ORDER BY MeetingDate ASC ) AS RowNumber
+                  FROM      {databaseOwner}{objectQualifier}UserGroups_UserGroupMeeting UGM
+                            INNER JOIN {databaseOwner}{objectQualifier}UserGroups_UserGroups UG ON UGM.UserGroupID = UG.UserGroupID
+                  WHERE     MeetingDate >= @StartDate
+                            AND MeetingDate <= @EndDate
+                            AND PortalID = @PortalID
+                            AND ( @Region IS NULL
+                                  OR Region = Region
+                                )
+                ) AS MeetingInfo
+        WHERE   RowNumber >= @RowStart
+                AND RowNumber <= @RowEnd 
+                
+        SELECT  TotalRecords = COUNT(*)
+        FROM    {databaseOwner}{objectQualifier}UserGroups_UserGroupMeeting UGM
+                INNER JOIN {databaseOwner}{objectQualifier}UserGroups_UserGroups UG ON UGM.UserGroupID = UG.UserGroupID
+        WHERE   MeetingDate >= @StartDate
+                AND MeetingDate <= @EndDate
+                AND PortalID = @PortalID
+                AND ( @Region IS NULL
+                      OR Region = Region
+                    )
+    END
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_UserGroup_GetRegions] @PortalID INT
+AS 
+    BEGIN
+        SELECT  Region
+        FROM    {databaseOwner}{objectQualifier}UserGroups_UserGroups
+        WHERE   PortalID = @PortalID
+	   GROUP BY Region
+	   ORDER BY Region ASC
+    END
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_UserGroup_Update]
+    @UserGroupID INT,
+    @PortalID INT,
+    @LeaderID INT,
+    @Name NVARCHAR(50),
+    @Country NVARCHAR(50),
+    @Region NVARCHAR(50),
+    @City NVARCHAR(50),
+    @Url NVARCHAR(100),
+    @Logo NVARCHAR(100),
+    @Active BIT,
+    @Latitude FLOAT,
+    @Longitude FLOAT,
+    @TwitterUrl NVARCHAR(100),
+    @LinkedInUrl NVARCHAR(100),
+    @FacebookUrl NVARCHAR(100),
+    @About NVARCHAR(200),
+    @LanguageID INT,
+    @LastModifiedByUserID INT,
+    @LastModifiedOnDate DATETIME,
+    @MeetingAddress NVARCHAR(200)
+AS 
+    UPDATE  {databaseOwner}{objectQualifier}UserGroups_UserGroups
+    SET     LeaderID = @LeaderID,
+            [Name] = @Name,
+            Country = @Country,
+            Region = @Region,
+            City = @City,
+            Url = @Url,
+            Logo = @Logo,
+            Active = @Active,
+            Latitude = @Latitude,
+            Longitude = @Longitude,
+            TwitterUrl = @TwitterUrl,
+            LinkedInUrl = @LinkedInUrl,
+            FacebookUrl = @FacebookUrl,
+            About = @About,
+            LanguageID = @LanguageID,
+            LastModifiedByUserID = @LastModifiedByUserID,
+            LastModifiedOnDate = @LastModifiedOnDate,
+            MeetingAddress = @MeetingAddress
+    WHERE   UserGroupID = @UserGroupID
+            AND PortalID = @PortalID
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_UserGroup_Add]
+    @PortalID INT,
+    @LeaderID INT,
+    @Name NVARCHAR(50),
+    @Country NVARCHAR(50),
+    @Region NVARCHAR(50),
+    @City NVARCHAR(50),
+    @Url NVARCHAR(100),
+    @Logo NVARCHAR(100),
+    @Active BIT,
+    @Latitude FLOAT,
+    @Longitude FLOAT,
+    @TwitterUrl NVARCHAR(100),
+    @LinkedInUrl NVARCHAR(100),
+    @FacebookUrl NVARCHAR(100),
+    @About NVARCHAR(200),
+    @LanguageID INT,
+    @CreatedByUserID INT,
+    @CreatedOnDate DATETIME,
+    @ModuleID INT,
+    @MeetingAddress NVARCHAR(200)
+AS 
+    INSERT  INTO {databaseOwner}{objectQualifier}UserGroups_UserGroups
+            (
+              PortalID,
+              LeaderID,
+              [Name],
+              Country,
+              Region,
+              City,
+              Url,
+              Logo,
+              Active,
+              Latitude,
+              Longitude,
+              TwitterUrl,
+              LinkedInUrl,
+              FacebookUrl,
+              About,
+              LanguageID,
+              CreatedByUserID,
+              CreatedOnDate,
+              ModuleID,
+              MeetingAddress
+	      )
+    VALUES  (
+              @PortalID,
+              @LeaderID,
+              @Name,
+              @Country,
+              @Region,
+              @City,
+              @Url,
+              @Logo,
+              @Active,
+              @Latitude,
+              @Longitude,
+              @TwitterUrl,
+              @LinkedInUrl,
+              @FacebookUrl,
+              @About,
+              @LanguageID,
+              @CreatedByUserID,
+              @CreatedOnDate,
+              @ModuleID,
+              @MeetingAddress
+	      )
+
+    SELECT  SCOPE_IDENTITY()
+GO
+
+

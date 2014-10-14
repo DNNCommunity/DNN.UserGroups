@@ -1,0 +1,9 @@
+<h3>User Group Module</h3>
+<div class="License">
+	<p class="Owner">
+		<h3>About User Groups</h3>
+		<b>Verion 2.1.0 </b><br /><br />
+
+		The User Group module contains 3 definitions, the original User Group module that permits management of groups as well as searching through groups (and meeting event details), as well as a "My Group" module that allows a non-member to join a user group or an existing member to see details about their user group including an upcoming meeting. The final module is a widget that rotates various user groups for use on a home page. 
+	</p>
+</div>

@@ -1,0 +1,408 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{93776C9D-A57F-410B-92EF-F05FF06880E6}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DotNetNuke.Modules.UserGroups</RootNamespace>
+    <AssemblyName>DotNetNuke.Modules.UserGroups</AssemblyName>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>4.0</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CountryListBox, Version=5.2.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Library\Controls\CountryListBox\obj\Debug\CountryListBox.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke, Version=5.4.1.26, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Library\bin\DotNetNuke.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.Modules.Events, Version=5.1.0.28438, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\bin\DotNetNuke.Modules.Events.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetNuke.WebUtility, Version=4.2.0.185, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Library\Controls\DotNetNuke.WebUtility\bin\DotNetNuke.WebUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ApplicationBlocks.Data, Version=2.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Library\Components\DataAccessBlock\bin\Microsoft.ApplicationBlocks.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Extensions.Design, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq, Version=3.5.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="Telerik.Web.UI, Version=2009.3.1104.35, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Library\Components\Telerik\bin\Telerik.Web.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Components\Common\Constants.cs" />
+    <Compile Include="Components\Common\Config.cs" />
+    <Compile Include="Components\Common\Content.cs" />
+    <Compile Include="Components\Common\Enums.cs" />
+    <Compile Include="Components\Common\Utl.cs" />
+    <Compile Include="Components\Controllers\AuditController.cs" />
+    <Compile Include="Components\Controllers\RegionController.cs" />
+    <Compile Include="Components\Controllers\UserGroupUserController.cs" />
+    <Compile Include="Components\Controllers\MeetingController.cs" />
+    <Compile Include="Components\Controllers\ReasonController.cs" />
+    <Compile Include="Components\Controllers\LanguageController.cs" />
+    <Compile Include="Components\Entities\AvatarInfo.cs" />
+    <Compile Include="Components\Entities\BaseMeetingInfo.cs" />
+    <Compile Include="Components\Entities\ServiceUserGroupInfo.cs" />
+    <Compile Include="Components\Entities\RegionInfo.cs" />
+    <Compile Include="Components\Entities\LanguageInfo.cs" />
+    <Compile Include="Components\Data\DataProvider.cs" />
+    <Compile Include="Components\Entities\AuditInfo.cs" />
+    <Compile Include="Components\Entities\ReasonInfo.cs" />
+    <Compile Include="Components\Entities\MessageInfo.cs" />
+    <Compile Include="Components\Entities\MeetingInfo.cs" />
+    <Compile Include="Components\Common\UserGroupsModuleBase.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Components\Entities\UserGroupUserInfo.cs" />
+    <Compile Include="Components\Controllers\UserGroupController.cs" />
+    <Compile Include="Components\Entities\UserGroupInfo.cs" />
+    <Compile Include="Components\Providers\Sitemap.cs" />
+    <Compile Include="ContactOfficers.ascx.cs">
+      <DependentUpon>ContactOfficers.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ContactOfficers.ascx.designer.cs">
+      <DependentUpon>ContactOfficers.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="GroupLocatorService.asmx.cs">
+      <DependentUpon>GroupLocatorService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MyGroupSettings.ascx.cs">
+      <DependentUpon>MyGroupSettings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyGroupSettings.ascx.designer.cs">
+      <DependentUpon>MyGroupSettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="MyGroup.ascx.cs">
+      <DependentUpon>MyGroup.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MyGroup.ascx.designer.cs">
+      <DependentUpon>MyGroup.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="SpotlightSettings.ascx.cs">
+      <DependentUpon>SpotlightSettings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SpotlightSettings.ascx.designer.cs">
+      <DependentUpon>SpotlightSettings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Spotlight.ascx.cs">
+      <DependentUpon>Spotlight.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Spotlight.ascx.designer.cs">
+      <DependentUpon>Spotlight.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="MeetingDetail.ascx.cs">
+      <DependentUpon>MeetingDetail.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="MeetingDetail.ascx.designer.cs">
+      <DependentUpon>MeetingDetail.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageGroupMeetings.ascx.cs">
+      <DependentUpon>ManageGroupMeetings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageGroupMeetings.ascx.designer.cs">
+      <DependentUpon>ManageGroupMeetings.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageGroupUsers.ascx.cs">
+      <DependentUpon>ManageGroupUsers.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageGroupUsers.ascx.designer.cs">
+      <DependentUpon>ManageGroupUsers.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="GroupProfile.ascx.cs">
+      <DependentUpon>GroupProfile.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="GroupProfile.ascx.designer.cs">
+      <DependentUpon>GroupProfile.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="LeaveGroup.ascx.cs">
+      <DependentUpon>LeaveGroup.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LeaveGroup.ascx.designer.cs">
+      <DependentUpon>LeaveGroup.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="ManageGroup.ascx.cs">
+      <DependentUpon>ManageGroup.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ManageGroup.ascx.designer.cs">
+      <DependentUpon>ManageGroup.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WelcomeUser.ascx.cs">
+      <DependentUpon>WelcomeUser.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WelcomeUser.ascx.designer.cs">
+      <DependentUpon>WelcomeUser.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="DirectorySearch.ascx.cs">
+      <DependentUpon>DirectorySearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DirectorySearch.ascx.designer.cs">
+      <DependentUpon>DirectorySearch.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Dispatch.ascx.cs">
+      <DependentUpon>Dispatch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dispatch.ascx.designer.cs">
+      <DependentUpon>Dispatch.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="EditMeeting.ascx.cs">
+      <DependentUpon>EditMeeting.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="EditMeeting.ascx.designer.cs">
+      <DependentUpon>EditMeeting.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Components\Data\SqlDataProvider.cs" />
+    <Compile Include="SendMessage.ascx.cs">
+      <DependentUpon>SendMessage.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SendMessage.ascx.designer.cs">
+      <DependentUpon>SendMessage.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings.ascx.cs">
+      <DependentUpon>Settings.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Settings.ascx.designer.cs">
+      <DependentUpon>Settings.ascx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ContactOfficers.ascx" />
+    <Content Include="GroupLocatorService.asmx" />
+    <Content Include="MyGroupSettings.ascx" />
+    <Content Include="MyGroup.ascx" />
+    <Content Include="SpotlightSettings.ascx" />
+    <Content Include="Spotlight.ascx" />
+    <Content Include="images\dnnlogo.png" />
+    <Content Include="MeetingDetail.ascx" />
+    <Content Include="Settings.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\Settings.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Components\Data\01.00.00.SqlDataProvider" />
+    <None Include="Components\Data\01.00.02.SqlDataProvider" />
+    <None Include="Components\Data\01.00.04.SqlDataProvider" />
+    <None Include="Components\Data\01.00.06.SqlDataProvider" />
+    <None Include="Components\Data\01.01.00.SqlDataProvider" />
+    <None Include="Components\Data\01.01.01.SqlDataProvider" />
+    <None Include="Components\Data\02.00.00.SqlDataProvider" />
+    <None Include="Components\Data\02.00.01.SqlDataProvider" />
+    <None Include="Components\Data\02.00.03.SqlDataProvider" />
+    <None Include="Components\Data\02.00.04.SqlDataProvider" />
+    <None Include="Components\Data\02.01.00.SqlDataProvider" />
+    <None Include="Components\Data\UnInstall.SqlDataProvider" />
+    <None Include="DNNCorp_UserGroups.dnn">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\SharedResources.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\EditMeeting.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\ManageGroupMeetings.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\SendMessage.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="WelcomeUser.ascx" />
+    <Content Include="DirectorySearch.ascx" />
+    <Content Include="Dispatch.ascx" />
+    <Content Include="EditMeeting.ascx" />
+    <Content Include="SendMessage.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{B4F97281-0DBD-4835-9ED8-7DFB966E87FF}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\DirectorySearch.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ManageGroup.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\ManageGroup.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="GroupProfile.ascx" />
+    <Content Include="LeaveGroup.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\LeaveGroup.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\WelcomeUser.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="module.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\GroupProfile.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="ManageGroupUsers.ascx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\ManageGroupUsers.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Documentation\Documentation.css" />
+    <Content Include="Documentation\Documentation.html" />
+    <Content Include="Documentation\License.txt" />
+    <Content Include="Documentation\ReleaseNotes.txt" />
+    <Content Include="images\unchecked.png" />
+    <Content Include="ManageGroupMeetings.ascx" />
+    <Content Include="images\check.png" />
+    <Content Include="images\facebook.png" />
+    <Content Include="images\linkedin.png" />
+    <Content Include="images\twitter.png" />
+    <Content Include="scripts\jquery.googlemaps.pack.1.01.js" />
+    <Content Include="scripts\jquery.googlemaps1.01.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\MeetingFinder.ascx.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\MeetingDetail.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\ContactOfficers.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Content Include="App_LocalResources\SpotlightSettings.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_LocalResources\MyGroupSettings.ascx.resx">
+      <SubType>Designer</SubType>
+    </Content>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49208</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost/DotNetNuke/DesktopModules/UserGroups</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost/DotNetNuke</IISAppRootUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,268 @@
+﻿#map_canvas {width:394px;height:300px;border:1px #ccc solid}
+
+.ManageGroup {clear:both;overflow:hidden;width:440px;}
+	.item-wrapper{clear:both;overflow:hidden;padding: 0 5px 5px 0;position:relative;}
+		.ManageGroup .item-wrapper br{display:none;}
+		.ManageGroup .item-wrapper div.Help{position:absolute;left:140px;top:0;z-index:1;width:290px}
+		.item-wrapper label{width:150px;text-align:right;float:left;}
+		.item-wrapper .left{float:left;}
+		.item-wrapper .right{float:right;}
+		.item-wrapper .short{width:50px}
+		.item-wrapper .med{width:150px}
+		.item-wrapper .long{width:250px}
+		.item-wrapper .tall{height:350px}
+		.item-wrapper .narrow{height:150px}
+		.item-wrapper input, .item-wrapper textarea{border-top:1px solid #777;border-left:1px solid #777;border-bottom:1px solid #ccc;border-right:1px solid #ccc;}
+	.ManageGroup .action-btns{margin-top:20px;margin-left:184px;overflow:hidden;}
+	.ManageGroup .action-btns a.CommandButton{display:block;float:left;}
+    	.ManageGroup .action-btns a.primary-action{background:#537388;color:#fff !important;line-height:26px;text-align:center;margin:10px 0;border-right:1px #30424E solid;border-bottom:1px #30424E solid;padding:0 10px}
+    	.ManageGroup .action-btns a.primary-action:hover{background:#30424E;text-decoration:none;}
+		.ManageGroup .action-btns a.secondary-action{padding:15px 0 10px 10px;}
+		.ManageGroup .leader-actions {clear:both;overflow:hidden;padding:10px 0;}
+			.leader-actions a.CommandButton, .leader-actions a.CommandButton:link, .leader-actions a.CommandButton:visited{display:block;float:left;padding:5px 10px;background:#537388;border-right:1px #30424E solid;border-bottom:1px #30424E solid;color:#fff;font-weight:normal;margin-right:5px;}
+			.leader-actions a.CommandButton:hover, .leader-actions a.CommandButton:visited:hover{text-decoration:none;background:#30424E;}
+		.GroupAdmin .short{width:25px;color:#fff;}
+	
+/* search page filters */
+#div-filters {
+	text-align: center;	
+	width: 620px;
+	padding-bottom: 30px;
+}
+
+#div-filters .left {
+	float: left;
+}
+
+#div-filters .right {
+	float: right;
+}
+
+#div-instructions {
+	text-align: center;
+	padding-top: 14px;
+	width: 620px;
+}
+
+#div-grid {
+	text-align: center;
+	width: 620px;
+}
+
+.div-admin {
+	text-align: center;
+	width: 620px;
+	padding-bottom: 20px;
+}
+
+.div-admin .left {
+	float: left;
+}
+
+.div-admin .right {
+	float: right;
+}
+
+.divFooter {
+	float: middle; 
+	width: 600px; 
+	text-align: center;	
+	padding-top: 12px;
+	padding-bottom: 12px;
+}
+
+/* ================================ 
+Group Profile
+=================================*/
+.usergroup-module{clear:both;overflow:hidden;width:640px;}
+	.ug-info{float:left;width:400px;}
+    	 .ug-info h2{color:#475c73;font-size:18px;font-weight:normal;}
+         .ug-info h3{clear:both;margin:0;padding:3px 0;}
+		 	.ug-info h3 span{float:left;width:120px;text-align:right;}
+			.ug-info h3, .ug-info h3 span{font-size:12px;font-weight:normal;}
+			.ug-info h3 a, .ug-info h3 span.location, .ug-info h3 span.lang{float:right;width:260px;text-align:left;}
+		 .ug-info .leader-link, .ug-info .website-link{}
+		.ug-info .location{}
+        .ug-info .ug-description{padding:0 0 20px 140px;}
+        .ug-map{}
+		
+    .ug-actions{float:right;width:230px;}
+    	a.join-btn{background:#537388;display:block;width:100px;color:#fff !important;line-height:26px;text-align:center;margin:10px 0;border-right:1px #30424E solid;border-bottom:1px #30424E solid;}
+    	a:hover.join-btn{background:#30424E;text-decoration:none;}
+         .ug-actions table{}
+        	 .ug-actions tbody{}
+            	 .ug-actions tr{}
+				 	.ug-actions td{}
+					.ug-actions td .header{}
+                	.ug-actions td .member{}
+                    .ug-actions td .officer{}
+			.ug-connect{margin:10px 0;clear:both;overflow:hidden;}
+        		.ug-connect span{display:block;float:none;margin-right:10px; margin-top:10px; margin-bottom:10px;}
+				.ug-connect a{display:block;float:left;padding-right:8px;}
+				.facebook-link img, .twitter-link img, .linkedin-link img, .dnn-link img{height:36px;width:36px;}
+				
+    .ug-upcoming{clear:both;padding:10px 0;}
+    	.ug-upcoming h2{color:#475c73;font-size:18px;font-weight:normal;}
+			.ug-upcoming table{}
+        	 .ug-upcoming tbody{}
+            	 .ug-upcoming tr{}
+				 	.ug-upcoming td{}
+        			.ug-upcoming .header{}
+                	.ug-upcoming .event-title{}
+                    .ug-upcoming .location{}
+                    .ug-upcoming .date{}
+                    .ug-upcoming .time{}
+	.usergroup-module .action-btns{display:block;margin-left: 256px;}
+		.usergroup-module .action-btns a{display:block;float:left;}
+    	.usergroup-module .action-btns a.CommandButton{background: #537388;display:block;width:108px;color:#fff !important;line-height:26px;text-align:center;margin:10px 0;border-right:1px #30424E solid;border-bottom:1px #30424E solid;}
+    	.usergroup-module .action-btns a.CommandButton:hover{background:#30424E;text-decoration:none;}
+    	
+	/* .usergroup-module .leader-actions{display:block;}
+		.usergroup-module .leader-actions a{display:block;float:left;padding:3px 3px 3px 0;}
+    	.usergroup-module .leader-actions a.CommandButton{background: #537388;display:block;width:108px;height:31px;color:#fff !important;line-height:26px;text-align:center;margin:10px 0;-moz-border-radius:3px;border-radius:3px;-webkit-border-radius: 3px;}
+    	.usergroup-module .leader-actions a.CommandButton:hover{background: #30424E;text-decoration:none;} */
+ /* ================================ 
+Telerik Grids
+=================================*/          
+    .usergroup-module .RadGrid_Default, .DirectorySearch .RadGrid_Default, 
+    	.ManageGroupMeetings .RadGrid_Default, .ManageGroupUsers .RadGrid_Default, .MeetingFinder .RadGrid_Default {border:1px solid #EBEBEB;}              
+	.usergroup-module .RadGrid_Default .rgHeader, .DirectorySearch .RadGrid_Default .rgHeader,
+		 .ManageGroupMeetings .RadGrid_Default .rgHeader, .ManageGroupUsers .RadGrid_Default .rgHeader, .MeetingFinder .RadGrid_Default .rgHeader {background:#61899d;color:#fff;}                
+	/* .usergroup-module .RadGrid_Default .rgRow td, .DirectorySearch .RadGrid_Default .rgRow td, 
+		.ManageGroupMeetings .RadGrid_Default .rgRow td, .ManageGroupUsers .RadGrid_Default .rgRow td {border-color:#F9FBFC;} */
+                    	
+/* ================================ 
+Edit Meeting
+=================================*/
+.EditMeeting {clear:both;overflow:hidden;width:440px;padding: 4px;}
+	.EditMeeting dd {
+		padding:4px;
+	}
+		.map-wrapper {
+			float: right;
+		}
+
+	.EditMeeting .action-btns{display:block;margin-left:183px}
+	.EditMeeting .action-btns a.CommandButton{float:left;display:block;}
+    	.EditMeeting .action-btns a.primary-action{background: #537388;color:#fff !important;line-height:26px;text-align:center;margin:10px 0;border-right:1px #30424E solid;border-bottom:1px #30424E solid;padding:0 15px;}
+    	.EditMeeting .action-btns a.primary-action:hover{background:#30424E;text-decoration:none;}
+		.EditMeeting .action-btns a.secondary-action{padding:15px 10px 10px;}
+
+/* ================================ 
+Send Message
+=================================*/      
+.SendMessage {clear:both;overflow:hidden;width:440px;}
+	.SendMessage .item-wrapper{clear:both;overflow:hidden;padding: 0 5px 5px 0;position:relative;}
+		.item-wrapper br{display:none;}
+		.item-wrapper div.Help{position:absolute;left:140px;top:0;z-index:1;width:290px}
+		.item-wrapper label{width:150px;text-align:right;float:left;}
+		.item-wrapper .left{float:left;}
+		.item-wrapper .right{float:right;}
+		.item-wrapper .long{width:250px}
+		.item-wrapper .narrow{height:150px}
+	.SendMessage .action-btns{display:block;padding-left:182px}
+    	.SendMessage .action-btns a.primary-action{background:#537388;display:block;color:#fff !important;line-height:26px;text-align:center;margin:10px 5px 10px 0;float:left;padding:0 10px;border-right:1px #30424E solid;border-bottom:1px #30424E solid;}
+    	.SendMessage .action-btns a.primary-action:hover{background:#30424E;text-decoration:none;}
+		.SendMessage .action-btns a.secondary-action{display:block;float:left;padding:15px 0 0 10px;}
+
+/* ================================ 
+Leave Group
+=================================*/      
+.LeaveGroup {clear:both;overflow:hidden;width:440px;}
+	.LeaveGroup .item-wrapper{clear:both;overflow:hidden;padding: 0 5px 5px 0;position:relative;}
+		.item-wrapper br{display:none;}
+		.item-wrapper div.Help{position:absolute;left:140px;top:0;z-index:1;width:290px}
+		.item-wrapper label{width:150px;text-align:right;float:left;}
+		.item-wrapper .left{float:left;}
+		.item-wrapper .right{float:right;}
+		.item-wrapper .long{width:250px}
+		.item-wrapper .narrow{height:150px}
+		.LeaveGroup .item-wrapper .med{text-align:right;}
+	.LeaveGroup .action-btns{padding-left:180px;margin-top:10px;}
+    	.LeaveGroup .action-btns a.primary-action{background:#537388;display:block;color:#fff !important;line-height:26px;text-align:center;margin:10px 5px 10px 0;float:left;padding:0 10px;border-right:1px #30424E solid;border-bottom:1px #30424E solid;}
+    	.LeaveGroup .action-btns a.primary-action:hover{background:#30424E;text-decoration:none;}
+{display:block;float:left;padding:3px 3px 3px 0;}
+			.LeaveGroup .action-btns a.secondary-action{width:110px;line-height:26px;text-align:center;margin:10px 0;}
+			.LeaveGroup .messages{margin-left:180px;}
+				.LeaveGroup .messages span{display:block;padding:10px;background:#FFCED6;border:2px #DB0024 solid;-moz-border-radius:6px;-webkit-border-radius:6px;margin-top:10px;}
+/* ================================ 
+Manage Group Meetings
+=================================*/
+	.ManageGroupMeetings .action-btns{display:block;margin-left: 256px}
+    	.ManageGroupMeetings .action-btns a.CommandButton{background: #537388;display:block;width:108px;color:#fff !important;line-height:26px;text-align:center;margin:10px 0;border-right:1px #30424E solid;border-bottom:1px #30424E solid;}
+    	.ManageGroupMeetings .action-btns a.CommandButton:hover{background:#30424E;text-decoration:none;}
+		.ManageGroupMeetings .leader-actions {clear:both;overflow:hidden;padding:10px 0;}
+			.leader-actions a.CommandButton, .leader-actions a.CommandButton:link, .leader-actions a.CommandButton:visited{display:block;float:left;padding:5px 10px;background:#537388;border-right:1px #30424E solid;border-bottom:1px #30424E solid;color:#fff;font-weight:normal;margin-right:5px;}
+			.leader-actions a.CommandButton:hover, .leader-actions a.CommandButton:visited:hover{text-decoration:none;background:#30424E;}
+		
+/* ================================ 
+Welcome User
+=================================*/
+.WelcomeUser{width:360px;background:#ECF2E4;padding:20px;border:2px #A8D886 solid;-moz-border-radius:6px;-webkit-border-radius:6px;overflow:hidden;}
+	.WelcomeUser .item-wrapper{padding:3px 0;}
+	.WelcomeUser .item-wrapper span{display:block;}
+	.WelcomeUser .item-wrapper span.left{width:100px;text-align:right;}
+	.WelcomeUser .item-wrapper span.right{width:240px;text-align:left;}
+	.WelcomeUser .action-btns{padding-left:120px}
+		.WelcomeUser .action-btns a{display:block;float:left;padding:3px 3px 3px 0;}
+    	.WelcomeUser .action-btns a.CommandButton, .WelcomeUser .action-btns a.primary-action{background: #537388;color:#fff !important;line-height:26px;text-align:center;margin:10px 0;padding:0 10px;border-right:1px #30424E solid;border-bottom:1px #30424E solid;}
+		.WelcomeUser .action-btns a.CommandButton:hover, .WelcomeUser .action-btns a.primary-action:hover{background:#30424E;text-decoration:none;}
+
+/* ================================ 
+Manage Group Users
+=================================*/
+.ManageGroupUsers .action-btns{display:block;margin-left: 250px}
+    	.ManageGroupUsers .action-btns a.CommandButton{background: #537388;display:block;width:108px;color:#fff !important;line-height:26px;text-align:center;margin:10px 0;}
+    	.ManageGroupUsers .action-btns a.CommandButton:hover{background:#30424E;text-decoration:none;}
+    	
+/* ================================ 
+Directory Search
+=================================*/
+.DirectorySearch .instructions{text-align: center;width: 620px;padding-top: 20px;padding-bottom: 20px;}	
+.DirectorySearch .action-btns{display:block;margin-left: 256px}
+    	.DirectorySearch .action-btns a.CommandButton{background: #537388;display:block;width:108px;color:#fff !important;line-height:26px;text-align:center;margin:10px 0;}
+    	.DirectorySearch .action-btns a.CommandButton:hover{background: #30424E;text-decoration:none;}
+
+/* ================================ 
+Meeting Finder
+=================================*/
+.MeetingFinder .action-btns{margin-top:20px;margin-left:270px;}
+	.MeetingFinder .action-btns a{display:block;float:left;padding:3px 3px 3px 0;}
+    	.MeetingFinder .action-btns a.CommandButton{background: #537388;width:100px;color:#fff !important;line-height:26px;text-align:center;margin:10px 0;}
+    	
+/* ================================ 
+Meeting Detail
+=================================*/
+.MeetingDetail{width:400px;background:#ECF2E4;padding:20px;border:2px #A8D886 solid;-moz-border-radius:6px;-webkit-border-radius:6px;overflow:hidden;}
+	.MeetingDetail .item-wrapper{padding:3px 0;}
+	.MeetingDetail .item-wrapper span{display:block;}
+	.MeetingDetail .item-wrapper span.left{width:100px;text-align:right;}
+	.MeetingDetail .item-wrapper span.right{width:240px;text-align:left;}
+	.MeetingDetail .action-btns{padding-left:135px}
+		.MeetingDetail .action-btns a{display:block;float:left;padding:3px 3px 3px 0;}
+    	.MeetingDetail .action-btns a.CommandButton, .WelcomeUser .action-btns a.primary-action{background: #537388;color:#fff !important;line-height:26px;text-align:center;margin:10px 0;padding:0 10px;border-right:1px #30424E solid;border-bottom:1px #30424E solid;}
+		.MeetingDetail .action-btns a.CommandButton:hover, .WelcomeUser .action-btns a.primary-action:hover{background:#30424E;text-decoration:none;}
+		
+/* ================================ 
+Send Message
+=================================*/      
+.ContactOfficers {clear:both;overflow:hidden;width:440px;}
+	.ContactOfficers .item-wrapper{clear:both;overflow:hidden;padding: 0 5px 5px 0;position:relative;}
+		.item-wrapper br{display:none;}
+		.item-wrapper div.Help{position:absolute;left:140px;top:0;z-index:1;width:290px}
+		.item-wrapper label{width:150px;text-align:right;float:left;}
+		.item-wrapper .left{float:left;}
+		.item-wrapper .right{float:right;}
+		.item-wrapper .long{width:250px}
+		.item-wrapper .narrow{height:150px}
+	.ContactOfficers .action-btns{display:block;padding-left:182px}
+    	.ContactOfficers .action-btns a.primary-action{background:#537388;display:block;color:#fff !important;line-height:26px;text-align:center;margin:10px 5px 10px 0;float:left;padding:0 10px;border-right:1px #30424E solid;border-bottom:1px #30424E solid;}
+    	.ContactOfficers .action-btns a.primary-action:hover{background:#30424E;text-decoration:none;}
+    	.ContactOfficers .action-btns a.secondary-action{display:block;float:left;padding:15px 0 0 10px;}
+    	
+.Settings dd{
+	padding: 6px;
+}
+
+
+		

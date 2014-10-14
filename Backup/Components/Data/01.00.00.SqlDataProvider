@@ -1,0 +1,222 @@
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/*****                                                  *****/
+/*****                                                  *****/
+/***** Note: To manually execute this script you must   *****/
+/*****       perform a search and replace operation     *****/
+/*****       for {databaseOwner} and {objectQualifier}  *****/
+/*****                                                  *****/
+/************************************************************/
+
+CREATE TABLE {databaseOwner}[{objectQualifier}UserGroups_UserGroups] (
+		[UserGroupID]     int NOT NULL IDENTITY(1, 1),
+		[ModuleID]        int NOT NULL,
+		[LeaderID]        int NULL,
+		[Name]            nvarchar(50) NOT NULL,
+		[Country]         nvarchar(50) NOT NULL,
+		[Region]          nvarchar(50) NULL,
+		[City]            nvarchar(50) NULL,
+		[Url]             nvarchar(100) NULL,
+		[Logo]            nvarchar(100) NULL,
+		[Status]          int NOT NULL
+)
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}UserGroups_UserGroups]
+	ADD
+	CONSTRAINT [PK_{objectQualifier}UserGroups_UserGroups]
+	PRIMARY KEY
+	([UserGroupID])
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}UserGroups_UserGroups]
+	ADD
+	CONSTRAINT [DF_{objectQualifier}UserGroups_UserGroups_Status]
+	DEFAULT ((0)) FOR [Status]
+GO
+
+CREATE TABLE {databaseOwner}[{objectQualifier}UserGroups_UserGroupUser] (
+		[UserGroupUserID]     int NOT NULL IDENTITY(1, 1),
+		[UserGroupID]         int NOT NULL,
+		[UserID]              int NOT NULL
+)
+GO
+
+ALTER TABLE {databaseOwner}[{objectQualifier}UserGroups_UserGroupUser]
+	ADD
+	CONSTRAINT [PK_{objectQualifier}UserGroups_UserGroupUser]
+	PRIMARY KEY
+	([UserGroupUserID])
+GO
+
+CREATE VIEW {databaseOwner}{objectQualifier}UserGroups_vw_UserGroups
+AS
+SELECT     UserGroupID, ModuleID, LeaderID, Name, Country, Region, City, Url, Logo, Status,
+                          (SELECT     COUNT(*) AS Expr1
+                            FROM          {databaseOwner}{objectQualifier}UserGroups_UserGroupUser
+                            WHERE      (UserGroupID = ug.UserGroupID)) AS Members
+FROM         {databaseOwner}{objectQualifier}UserGroups_UserGroups AS ug
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_GetUsersByUserGroup]
+	@UserGroupID	int
+AS
+    SELECT  
+		u.UserID,
+		u.UserName,
+		u.DisplayName
+    FROM	{objectQualifier}UserGroups_UserGroupUser ug
+		INNER JOIN {objectQualifier}Users u ON ug.UserID = u.UserID
+    WHERE  @UserGroupID = @UserGroupID
+	ORDER BY u.DisplayName
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_JoinUserGroup]
+
+	@UserGroupID int,
+	@UserID      int
+
+AS
+
+	DECLARE @UserGroupUserID int
+	SELECT @UserGroupUserID = NULL
+
+	SELECT @UserGroupUserID = UserGroupUserID
+		FROM   {objectQualifier}UserGroups_UserGroupUser
+		WHERE  UserId = @UserId
+
+	IF @UserGroupUserID IS NOT NULL
+		BEGIN
+			/** Update **/
+			UPDATE {objectQualifier}UserGroups_UserGroupUser
+				SET UserGroupID = @UserGroupID
+				WHERE  UserId = @UserId
+		END
+	ELSE
+		BEGIN
+			/** Add **/
+			INSERT INTO {objectQualifier}UserGroups_UserGroupUser (
+				UserGroupID,
+				UserID
+			)
+			VALUES (
+				@UserGroupID,
+				@UserID
+			)
+		END
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_UpdateUserGroup]
+
+	@UserGroupID	int,
+	@LeaderID		int,
+	@Name			nvarchar(50),
+	@Country		nvarchar(50),
+	@Region			nvarchar(50),
+	@City			nvarchar(50),
+	@Url			nvarchar(100),
+	@Logo			nvarchar(100),
+	@Status			int
+
+AS
+	UPDATE {objectQualifier}UserGroups_UserGroups 
+		SET 
+			LeaderID = @LeaderID,
+			[Name] = @Name,
+			Country = @Country,
+			Region = @Region,
+			City = @City,
+			Url = @Url,
+			Logo = @Logo,
+			Status = @Status
+		WHERE UserGroupID = @UserGroupID
+
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_GetUserGroup]
+	@UserGroupID	int
+AS
+    SELECT  ug.*
+    FROM	{objectQualifier}UserGroups_vw_UserGroups ug
+    WHERE  UserGroupID = @UserGroupID
+
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_GetUserGroupByUser]
+	@UserID		int,
+	@ModuleID	int
+AS
+    SELECT  ug.*
+    FROM	{objectQualifier}UserGroups_vw_UserGroups ug
+		INNER JOIN {objectQualifier}UserGroups_UserGroupUser u ON ug.UserGroupID = u.UserGroupID
+    WHERE  ModuleID = @ModuleID
+		AND UserID = @UserID
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_GetUserGroups]
+	@ModuleID		int
+AS
+    SELECT  *
+    FROM	{objectQualifier}UserGroups_vw_UserGroups
+    WHERE  ModuleID = @ModuleID
+	ORDER BY Country, Region, City
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_AddUserGroup]
+
+	@ModuleID	int,
+	@LeaderID	int,
+	@Name		nvarchar(50),
+	@Country	nvarchar(50),
+	@Region		nvarchar(50),
+	@City		nvarchar(50),
+	@Url		nvarchar(100),
+	@Logo		nvarchar(100),
+	@Status		int
+
+AS
+
+INSERT INTO {objectQualifier}UserGroups_UserGroups (
+	ModuleID,
+	LeaderID,
+	[Name],
+	Country,
+	Region,
+	City,
+	Url,
+	Logo,
+	Status
+)
+VALUES (
+	@ModuleID,
+	@LeaderID,
+	@Name,
+	@Country,
+	@Region,
+	@City,
+	@Url,
+	@Logo,
+	@Status
+)
+
+SELECT SCOPE_IDENTITY()
+
+GO
+
+CREATE PROCEDURE {databaseOwner}[{objectQualifier}UserGroups_DeleteUserGroup]
+
+	@UserGroupID	int
+AS
+
+	/* Delete Users First */
+	DELETE FROM {objectQualifier}UserGroups_UserGroupUser
+		WHERE UserGroupID = @UserGroupID
+
+	/* Delete UserGroup */
+	DELETE FROM {objectQualifier}UserGroups_UserGroups
+		WHERE UserGroupID = @UserGroupID
+GO
+
+/************************************************************/
+/*****              SqlDataProvider                     *****/
+/************************************************************/
