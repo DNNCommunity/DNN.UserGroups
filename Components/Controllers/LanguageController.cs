@@ -1,5 +1,5 @@
 //
-// DotNetNuke® - http://www.dotnetnuke.com
+// DotNetNukeÂ® - http://www.dotnetnuke.com
 // Copyright (c) 2002-2010
 // by DotNetNuke Corporation
 //
@@ -37,7 +37,7 @@ namespace DotNetNuke.Modules.UserGroups.Components.Controllers
 			return languageID;
 		}
 
-		public List<LanguageInfo> GetLanguages(int portalID) 
+		public List<LanguageInfo> GetLanguages(int portalID) // variable portalID should be portalId as per coding guidline
 		{
 			return CBO.FillCollection<LanguageInfo>(DataProvider.Instance().GetLanguages(portalID));
 		}
